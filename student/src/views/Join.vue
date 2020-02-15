@@ -1,0 +1,56 @@
+<template>
+	<v-content>
+		<v-container
+			class="fill-height"
+			fluid
+		>
+			<v-row
+				align="center"
+				justify="center"
+			>
+				<v-col
+					cols="6"
+					sm="8"
+					md="8"
+				>
+					<v-card>
+						<v-toolbar
+							color="primary"
+							dark
+							flat
+						>
+							<v-toolbar-title>Join A Lecture</v-toolbar-title>
+						</v-toolbar>
+
+						<v-card-text>
+							<br><br>
+							<h2 style="color: black; text-align: center;">Enter your 5-digit code below</h2>
+							<v-form>
+								<v-row align="center" justify="center">
+									<v-col cols="12" sm="10">
+										<v-text-field
+											label="5-digit code"
+											outlined
+										></v-text-field>
+									</v-col>
+								</v-row>
+							</v-form>
+							<br>
+							<div class="text-center">
+								<v-btn rounded color="primary" x-large>Join</v-btn>
+							</div>
+							<br>
+						</v-card-text>
+
+					</v-card>
+				</v-col>
+			</v-row>
+		</v-container>
+	</v-content>
+</template>
+
+<script>
+
+export default {
+}
+</script>
