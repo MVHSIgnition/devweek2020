@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Join from '@/views/Join.vue'
+import Lecture from '@/views/Lecture.vue'
 
 Vue.use(VueRouter)
 
@@ -14,8 +15,8 @@ const routes = [
     component: Join
   },
   {
-    path: '/about',
-    name: 'About',
+    path: '/lecture',
+    component: Lecture
   }
 ]
 

@@ -31,13 +31,14 @@
 										<v-text-field
 											label="5-digit code"
 											outlined
+											v-model="code"
 										></v-text-field>
 									</v-col>
 								</v-row>
 							</v-form>
 							<br>
 							<div class="text-center">
-								<v-btn rounded color="primary" x-large>Join</v-btn>
+								<v-btn @click="join" rounded color="primary" x-large>Join</v-btn>
 							</div>
 							<br>
 						</v-card-text>
@@ -52,5 +53,15 @@
 <script>
 
 export default {
+	data() {
+		return {
+			code: ''
+		}
+	},
+	methods: {
+		join() {
+			this.$router.push({ path: '/lecture?code=' + this.code });
+		}
+	}
 }
 </script>
