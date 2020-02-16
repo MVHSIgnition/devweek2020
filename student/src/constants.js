@@ -1,1 +1,1 @@
-export const CLIENT_ID = "654749883863-5sqpspp4npsid19i9c7jd0dod6bql92i.apps.googleusercontent.com";
+export const CLIENT_ID = "654749883863-afqt827l78oojdfeu9dea04ouggi411l.apps.googleusercontent.com";
