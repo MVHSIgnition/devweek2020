@@ -9,8 +9,10 @@
   "dependencies": {
     "agora-rtm-sdk": "^1.2.1",
     "vue": "^2.6.11",
+    "vue-google-login": "^2.0.3",
     "vue-router": "^3.1.5",
-    "vuetify": "^2.2.11"
+    "vuetify": "^2.2.11",
+    "vuex": "^3.1.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-router": "~4.2.0",

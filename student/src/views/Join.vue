@@ -23,7 +23,16 @@
 						</v-toolbar>
 
 						<v-card-text>
-							<br><br>
+							<br>
+							<v-row align="center" justify="center">
+								<v-avatar>
+									<img v-bind:src="profilePic" />
+								</v-avatar>
+							</v-row>
+							<v-row align="center" justify="center">
+								<p>Welcome back, <b>{{ firstName }}</b>!</p>
+							</v-row>
+							<br>
 							<h2 style="color: black; text-align: center;">Enter your 5-digit code below</h2>
 							<v-form>
 								<v-row align="center" justify="center">
@@ -51,12 +60,16 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 
 export default {
 	data() {
 		return {
-			code: ''
+			code: '',
 		}
+	},
+	computed: {
+		...mapState(['firstName', 'lastName', 'profilePic'])
 	},
 	methods: {
 		join() {
