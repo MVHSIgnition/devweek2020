@@ -3,10 +3,10 @@
     <v-container
       fluid
     >
-      <h1>Lecture: {{ lectureName }}</h1>
-      <br><br><br><br>
+      <h1 class="display-1">Lecture: <strong>{{ lectureName }}</strong></h1>
+      <br><br>
       <v-row align="center" justify="center">
-        <v-card width="500" height="400">
+        <v-card width="400" height="400">
           <v-card-text>
             <span class="text--primary title"><span style="background: red; padding: 2px 5px; color: white; border-radius: 3px;animation: animation: blink 1s step-start 0s infinite;" class="blink">LIVE</span> Understanding Score</span>
             <br><br><br><br><br><br>
@@ -20,25 +20,28 @@
             <br>
           </v-card-text>
         </v-card>
-        <div id="chart-container" class="ml-3" style="height: 300px; width: 700px"></div>
+        <v-card width="800px" height="400px" align="center" justify="center" style="padding-top: 50px;">
+          <div id="chart-container" class="ml-3" style="height: 300px; width: 700px"></div>
+        </v-card>
       </v-row>
       <v-row align="center" justify="center">
-        <v-col align="center" justify="center" cols="10">
-        <a href="#questions"><i id="arrow-btn" class="fas fa-chevron-down" style="font-size:8vmin;color:gray;transform:translate(0,0);"></i></a>
+        <v-col align="center" justify="center" cols="10" class="pt-9">
+          <a href="#questions"><i id="arrow-btn" class="fas fa-chevron-down" style="font-size:8vmin;color:gray;transform:translate(0,0);"></i></a>
+          
+          <h1 id="questions" class="display-2 mt-9 mb-4 pt-9">Questions</h1>
+          <ul style="list-style-type: none">
+            <li v-for="question in questions" v-bind:key="question.id">
+              <v-banner>
+                {{question.text}}
+                <template v-slot:actions>
+                  <v-btn text color="primary">Dismiss</v-btn>
+                </template>
+              </v-banner>
+            </li>
+          </ul>
 
-        <h1 id="questions" class="display-2 mt-9 mb-4 pt-9">Questions</h1>
-        <ul style="list-style-type: none">
-        <li v-for="question in questions" v-bind:key="question.id">
-          <v-banner>
-        {{question.text}}
-        <template v-slot:actions>
-          <v-btn text color="primary">Dismiss</v-btn>
-        </template>
-      </v-banner>
-        </li>
-      </ul>
-      <div style="height: 400px;"></div>
-      </v-col>
+          <div style="min-height: 80vh;"></div>
+        </v-col>
       </v-row>
     </v-container>
 
@@ -190,6 +193,7 @@ export default {
       console.log('AgoraRTM client login failure', err);
     });
     this.initChart();
+    this.$emit("startlecture");
   }
 }
 </script>
@@ -207,4 +211,13 @@ export default {
 html {
   scroll-behavior: smooth;
 }
+
+#arrow-btn {
+  transition: all 0.3s;
+}
+
+#arrow-btn:hover {
+  font-size: 20px;
+}
+
 </style>

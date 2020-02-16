@@ -2,7 +2,7 @@
   <v-content>
     <v-container>
       <div style="height: 10px;"></div>
-      <span class="display-1 font-weight-bold">Hi David</span>
+      <span class="display-1">Hi David,</span>
       
       <div style="height: 60px;"></div>
 
