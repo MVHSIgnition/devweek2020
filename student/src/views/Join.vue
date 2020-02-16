@@ -78,9 +78,11 @@ export default {
 				var lecCode = this.code;
 				console.log("Channel member count: " + Object.values(result)[0]);
 				if(Object.values(result)[0] > 0) {
+					this.client.logout();
 					this.$router.push({ path: '/lecture?code=' + this.code });
 				} else {
 					this.error = true;
+					this.client.logout();
 					console.log("invalid");
 				}
 			});

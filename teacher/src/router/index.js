@@ -9,7 +9,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    redirect: '/dashboard'
+    redirect: '/login'
   },
   {
     path: '/dashboard',
@@ -22,7 +22,11 @@ const routes = [
   {
     path: '/live-lecture',
     component: LiveLecture
-  }
+  },
+  {
+    path: '/login',
+    component: Login
+  },
 ]
 
 const router = new VueRouter({
