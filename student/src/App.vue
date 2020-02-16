@@ -7,18 +7,34 @@
       color="green lighten-1"
       dark
     >
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
-      <v-toolbar-title>Intellecture Student</v-toolbar-title>
-
-      <v-spacer></v-spacer>
-
+      <v-toolbar-title v-if="code == ''">Intellecture Student</v-toolbar-title>
       <div v-if="code != ''" style="border-radius: 5px; background-color: #ddd; padding: 0px 10px; color: black; height: 40px; font-size: 15px;">
         <h1>{{code}}</h1>
       </div>
-
       <div v-if="logged" class="my-2 ml-3">
         <v-btn v-on:click="exit" depressed color="error">Exit</v-btn>
+      </div>
+
+      <v-spacer></v-spacer>
+
+      <div v-if="profilePic != undefined && profilePic != ''" >
+        <v-menu
+          v-model="signOutValue"
+        >
+          <template v-slot:activator="{ on }">
+            <v-avatar v-on="on">
+              <v-img v-bind:src="profilePic"></v-img>
+            </v-avatar>
+          </template>
+          <v-list>
+            <v-list-item
+              @click="signOut"
+            >
+              <v-list-item-title>Sign out</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
       </div>
     </v-app-bar>
 
@@ -32,6 +48,7 @@
 
 <script>
 import HelloWorld from './components/HelloWorld';
+import { mapState } from 'vuex';
 
 export default {
   name: 'App',
@@ -40,10 +57,15 @@ export default {
     HelloWorld,
   },
 
+  computed: {
+    ...mapState(['profilePic', 'auth2'])
+  },
+
   data: () => ({
     code: "",
     exitVal: false,
-    logged: false
+    logged: false,
+    signOutValue: false,
   }),
 
   methods: {
@@ -53,7 +75,10 @@ export default {
     },
     exit: function() {
       this.exitVal = !this.exitVal;
-    }
+    },
+    signOut: function() {
+      this.auth2.signOut();
+    },
   }
 };
 </script>

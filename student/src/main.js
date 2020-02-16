@@ -14,6 +14,7 @@ Vue.use(LoaderPlugin, {
 });
 
 Vue.GoogleAuth.then(auth2 => {
+  store.commit('setAuth2', auth2);
   auth2.isSignedIn.listen((signedIn) => {
     if (signedIn) {
       console.log('USER HAS SIGNED IN! ', auth2.currentUser.get());
@@ -24,7 +25,9 @@ Vue.GoogleAuth.then(auth2 => {
     } else {
       console.log('USER HAS SIGNED OUT!');
       
-      router.push('/sign_in');
+      setUserData(null);
+      if (router.currentRoute.path != '/sign_in')
+        router.push('/sign_in');
     }
   });
 
@@ -35,7 +38,9 @@ Vue.GoogleAuth.then(auth2 => {
     if (router.currentRoute.path == '/sign_in')
       router.push('/join');
   } else {
-    router.push('/sign_in');
+    setUserData(null);
+    if (router.currentRoute.path != '/sign_in')
+      router.push('/sign_in');
   }
 });
 

@@ -1,18 +1,8 @@
 <template>
 	<v-content>
-		<v-container
-			class="fill-height"
-			fluid
-		>
-			<v-row
-				align="center"
-				justify="center"
-			>
-				<v-col
-					cols="6"
-					sm="8"
-					md="8"
-				>
+		<v-container>
+			<v-row>
+				<v-col>
 					<v-card>
 						<v-card-title>
 							<span class="title font-weight-light">Join Lecture</span>
@@ -35,16 +25,6 @@
 									</v-col>
 								</v-row>
 							</v-form>
-
-							<v-list-item class="grow">
-								<v-list-item-avatar>
-									<v-img v-bind:src="profilePic"></v-img>
-								</v-list-item-avatar>
-
-								<v-list-item-content>
-									<v-list-item-title>{{ firstName + " " + lastName }}</v-list-item-title>
-								</v-list-item-content>
-							</v-list-item>
 						</v-card-text>
 
 					</v-card>
