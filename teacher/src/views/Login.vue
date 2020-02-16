@@ -68,8 +68,9 @@ export default {
 
       setTimeout(() => {
         this.loading = false;
+        localStorage.username = this.username;
         this.$router.push({
-          path: '/dashboard?username=' + encodeURIComponent(this.username)
+          path: '/dashboard'
         });
       }, 2000);
     },
