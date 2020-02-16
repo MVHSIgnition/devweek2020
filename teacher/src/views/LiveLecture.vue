@@ -29,51 +29,42 @@
           <a href="#questions"><i id="arrow-btn" class="fas fa-chevron-down" style="font-size:8vmin;color:gray;transform:translate(0,0);"></i></a>
 
           <h1 id="questions" class="display-2 mt-9 mb-4 pt-9">Questions</h1>
-          <ul style="list-style-type: none">
-            <li v-for="question in questions" v-bind:key="question.id">
-              <v-banner>
-                {{question.text}}
-                <template v-slot:actions>
-                  <v-btn text color="primary">Dismiss</v-btn>
-                </template>
-              </v-banner>
-            </li>
-          </ul>
-
-          <div style="min-height: 80vh;"></div>
-        </v-col>
-      </v-row>
-
-          <v-col>
-            <v-card
-              class="mx-auto"
-              max-width="400"
-              tile
-            >
-              <v-list-item 
-                v-for="n in 3"
-                v-bind:key="n"
-              >
-                <v-list-item-content>
-                  <v-list-item-title>{{ (n) + ': ' + keywords[n-1].word }}</v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-            </v-card>
-          </v-col>
           
-          <v-col>
-            <ul style="list-style-type: none">
-              <li v-for="question in questions" v-bind:key="question.id">
-                <v-banner>
-                  {{question.text}}
-                  <template v-slot:actions>
-                    <v-btn text color="primary">Dismiss</v-btn>
-                  </template>
-                </v-banner>
-              </li>
-            </ul>
-            <div style="height: 400px;"></div>
-          </v-col>
+          <v-row>
+            <v-col align="left">
+              <v-card
+                class="mx-auto"
+                max-width="400"
+                tile
+              >
+                <v-card-title>Keywords</v-card-title>
+                <v-card-text>
+                  <v-list-item 
+                    v-for="n in 3"
+                    v-bind:key="n"
+                  >
+                    <v-list-item-content>
+                      <v-list-item-title>{{ (n) + ': ' + keywords[n-1].word }}</v-list-item-title>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-card-text>
+              </v-card>
+            </v-col>
+            
+            <v-col cols="8">
+              <ul style="list-style-type: none">
+                <li v-for="question in questions" v-bind:key="question.id">
+                  <v-banner>
+                    {{question.text}}
+                    <template v-slot:actions>
+                      <v-btn text color="primary">Dismiss</v-btn>
+                    </template>
+                  </v-banner>
+                </li>
+              </ul>
+              <div style="height: 400px;"></div>
+            </v-col>
+          </v-row>
         </v-col>
       </v-row>
     </v-container>
