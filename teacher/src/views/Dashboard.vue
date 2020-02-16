@@ -2,7 +2,7 @@
   <v-content>
     <v-container>
       <div style="height: 10px;"></div>
-      <span class="display-1">Hi {{ $route.query.username }},</span>
+      <span class="display-1">Hi {{ username }},</span>
       
       <div style="height: 60px;"></div>
 
@@ -106,6 +106,7 @@
 export default {
   data() {
     return {
+      username: localStorage.username,
       lastLecture: {
         labels: [
           '0 min',
