@@ -14,26 +14,11 @@
 					md="8"
 				>
 					<v-card>
-						<v-toolbar
-							color="primary"
-							dark
-							flat
-						>
-							<v-toolbar-title>Join A Lecture</v-toolbar-title>
-						</v-toolbar>
+						<v-card-title>
+							<span class="title font-weight-light">Join Lecture</span>
+						</v-card-title>
 
 						<v-card-text>
-							<br>
-							<v-row align="center" justify="center">
-								<v-avatar>
-									<img v-bind:src="profilePic" />
-								</v-avatar>
-							</v-row>
-							<v-row align="center" justify="center">
-								<p>Welcome back, <b>{{ firstName }}</b>!</p>
-							</v-row>
-							<br>
-							<h2 style="color: black; text-align: center;">Enter your 5-digit code below</h2>
 							<v-form>
 								<v-row align="center" justify="center">
 									<v-col cols="12" sm="10">
@@ -42,14 +27,20 @@
 											outlined
 											v-model="code"
 										></v-text-field>
+										<v-btn @click="join" block color="primary" x-large>Join</v-btn>
 									</v-col>
 								</v-row>
 							</v-form>
-							<br>
-							<div class="text-center">
-								<v-btn @click="join" rounded color="primary" x-large>Join</v-btn>
-							</div>
-							<br>
+
+							<v-list-item class="grow">
+								<v-list-item-avatar>
+									<v-img v-bind:src="profilePic"></v-img>
+								</v-list-item-avatar>
+
+								<v-list-item-content>
+									<v-list-item-title>{{ firstName + " " + lastName }}</v-list-item-title>
+								</v-list-item-content>
+							</v-list-item>
 						</v-card-text>
 
 					</v-card>
