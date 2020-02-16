@@ -14,7 +14,7 @@
             <v-card-title>
               <span class="display-1 font-weight-bold">Login with YubiKey</span>
             </v-card-title>
-            
+
             <v-card-text>
               <v-form>
                 <v-row align="center" justify="center">
@@ -69,7 +69,7 @@ export default {
       setTimeout(() => {
         this.loading = false;
         this.$router.push({
-          path: '/dashboard'
+          path: '/dashboard?username=' + encodeURIComponent(this.username)
         });
       }, 2000);
     },
