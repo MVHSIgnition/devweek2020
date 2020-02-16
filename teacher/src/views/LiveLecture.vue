@@ -235,10 +235,11 @@ export default {
           maximum: 100,
         },
         data: [{
-          type: 'spline',
+          type: 'line',
           markerSize: 0,
           lineThinkness: 6,
-          dataPoints: this.averageLog
+          dataPoints: this.averageLog,
+          lineColor: "red"
         }]
       });
       this.chart.render();
