@@ -16,7 +16,8 @@ const routes = [
   },
   {
     path: '/lecture',
-    component: Lecture
+    component: Lecture,
+    props: true
   }
 ]
 
