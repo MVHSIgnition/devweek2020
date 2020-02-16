@@ -4,36 +4,41 @@
       class="fill-height"
       fluid
     >
+      <h1>Lecture: {{ lectureName }}</h1>
+      <br><br><br><br>
       <v-row align="center" justify="center">
         <v-card width="500" height="400">
           <v-card-text>
-            <span class="text--primary title"><span style="background: red; padding: 2px 5px; color: white; border-radius: 3px;animation: animation: blink 1s step-start 0s infinite;" class="blink">LIVE</span> Average Understanding</span>
+            <span class="text--primary title"><span style="background: red; padding: 2px 5px; color: white; border-radius: 3px;animation: animation: blink 1s step-start 0s infinite;" class="blink">LIVE</span> Understanding Score</span>
+            <br><br><br><br><br><br>
+            <span class="text--primary font-weight-black" style="margin: 0 auto; text-align: center; font-size: 150px; background: #ddd; border-radius: 7px; padding: 4px 10px;">{{ understandingScore }}%</span>
             <br><br><br><br>
-            <span class="text--primary font-weight-black" style="margin: 0 auto; text-align: center; font-size: 100px; background: #ddd; border-radius: 7px; padding: 4px 10px;">{{ averageUnderstanding }}</span>
-            <br><br><br>
-            <span class="text--primary title"><span style="background: red; padding: 2px 5px; color: white; border-radius: 3px;animation: animation: blink 1s step-start 0s infinite;" class="blink">LIVE</span> Understanding Range</span>
-            <br><br><br><br>
-            <span class="text--primary font-weight-black" style="margin: 0 auto; text-align: center; font-size: 100px; background: #ddd; border-radius: 7px; padding: 4px 10px;">{{ range }}</span>
+            <span class="text--primary title">Average Understanding: </span>
+            <span class="text--primary font-weight-black" style="font-size: 20px; background: #ddd; padding: 2px 4px; border-radius: 3px;">{{ averageUnderstanding }}</span>
+            <br>
+            <span class="text--primary title">Understanding Range: </span>
+            <span class="text--primary font-weight-black" style="font-size: 20px; background: #ddd; padding: 2px 4px; border-radius: 3px;">{{ range }}</span>
             <br>
           </v-card-text>
         </v-card>
+        <div id="chart-container" style="height: 300px; width: 700px"></div>
       </v-row>
-
     </v-container>
 
-      <v-footer
-        fixed
-        color="green lighten-3"
-        class="font-weight-medium"
+
+    <v-footer
+      fixed
+      color="green lighten-3"
+      class="font-weight-medium"
+    >
+      <v-col
+        class="text-center"
+        cols="12"
+        sm="8"
       >
-        <v-col
-          class="text-center"
-          cols="12"
-          sm="8"
-        >
-          <span style="font-size: 28px;">Give your students the join code: <span class="text--primary font-weight-black" style="background: #ddd; border-radius: 7px; padding: 4px 10px;">{{ id }}</span></span>
-        </v-col>
-      </v-footer>
+        <span style="font-size: 28px;">Give your students the join code: <span class="text--primary font-weight-black" style="background: #ddd; border-radius: 7px; padding: 4px 10px;">{{ id }}</span></span>
+      </v-col>
+    </v-footer>
   </v-content>
 </template>
 
@@ -43,13 +48,17 @@ export default {
   data() {
     return {
       id: this.$route.query.id,
+      lectureName: this.$route.query.name,
+      understandingScore: 5,
       averageUnderstanding: 5,
-      range: '0',
+      range: 0,
       client: null,
       channel: null,
       people: {},
       understandingByPerson: {},
-      log: []
+      log: [],
+      averageLog: [],
+      start: Date.now()
     }
   },
   methods: {
@@ -67,6 +76,15 @@ export default {
 
         this.averageUnderstanding = this.computeAverage();
         this.range = this.calculateStandardDeviation(this.averageUnderstanding) + '';
+        this.understandingScore = this.compositeScore(this.averageUnderstanding, this.range);
+        this.averageLog.push({
+          x: (Date.now() - this.start)/1000,
+          y: this.understandingScore
+        });
+        this.chart.render();
+        while (this.averageLog[this.averageLog.length - 1].x - this.averageLog[0].x > 30) {
+          this.averageLog.shift();
+        }
       });
       this.channel.join().then(() => {
         console.log("You joined channel successfully");
@@ -75,7 +93,7 @@ export default {
       });
     },
     saveForEmail(email, value) {
-      this.log.push({ email, value });
+      this.log.push({ email, value, time: Date.now() });
       this.understandingByPerson[email] = value;
     },
     computeAverage() {
@@ -107,6 +125,29 @@ export default {
       }
       console.log(max-min);
       return max - min;
+    },
+    compositeScore(avg, std) {
+      return Math.round((avg - (.1 * avg * std)) * 10);
+    },
+    initChart() {
+      this.chart = new CanvasJS.Chart('chart-container', {
+        exportEnabled: true,
+        title: {
+          text: 'Understanding',
+          fontFamily: 'Roboto'
+        },
+        axisY: {
+          includeZero: true,
+          maximum: 100,
+        },
+        data: [{
+          type: 'spline',
+          markerSize: 0,
+          lineThinkness: 6,
+          dataPoints: this.averageLog
+        }]
+      });
+      this.chart.render();
     }
   },
   mounted() {
@@ -120,6 +161,7 @@ export default {
     }).catch(err => {
       console.log('AgoraRTM client login failure', err);
     });
+    this.initChart();
   }
 }
 </script>

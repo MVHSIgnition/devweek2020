@@ -74,7 +74,7 @@ export default {
   methods: {
     create() {
       let id = this.makeId(5);
-      this.$router.push({ path: '/live-lecture?id=' + id });
+      this.$router.push({ path: '/live-lecture?id=' + id + '&name=' + this.lectureName });
     },
     makeId(length) {
       let result = '';
