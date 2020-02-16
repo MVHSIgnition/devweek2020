@@ -30,11 +30,6 @@
 										<v-btn @click="join" block color="primary" x-large>Join</v-btn>
 									</v-col>
 								</v-row>
-								<v-row align="center" justify="center">
-									<v-col cols="12" sm="10">
-										
-									</v-col>
-								</v-row>
 							</v-form>
 
 							<v-list-item class="grow">
