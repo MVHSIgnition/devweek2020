@@ -40,6 +40,23 @@
       <div style="height: 400px;"></div>
       </v-col>
       </v-row>
+
+      <v-card
+          class="mx-auto"
+          max-width="400"
+          tile
+        >
+            <v-list-item 
+              v-for="n in 3"
+              v-bind:key="n"
+            >
+              <v-list-item-content>
+                <v-list-item-title>{{ (n) + ': ' + keywords[n-1].word }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+        </v-card>
+      <v-row>
+      </v-row>
     </v-container>
 
 
@@ -60,6 +77,7 @@
 </template>
 
 <script>
+import * as http from 'http';
 
 export default {
   data() {
@@ -85,6 +103,7 @@ export default {
   },
   methods: {
     setup() {
+      console.log('keywords', this.keywords);
       this.channel = this.client.createChannel(this.id);
       this.channel.on('ChannelMessage', ({ text }, email) => {
         let obj = JSON.parse(text);
@@ -96,6 +115,7 @@ export default {
         } else if (obj.type === 'update') {
           this.saveForEmail(email, obj.value);
         } else if (obj.type === 'question') {
+          this.analyzeQuestion(obj.question);
           console.log('Question: ' + obj.question)
           this.questions.unshift({text: obj.question, id: this.questions.length});
           return;
@@ -119,6 +139,28 @@ export default {
       }).catch(error => {
         console.log("Failure to join channel");
       });
+    },
+    async analyzeQuestion(question) {
+      let formData = new FormData();
+      formData.append('extractors', 'entities,phrases');
+      formData.append('text', question);
+
+      console.log('analyze question', question);
+
+      await fetch('https://api.textrazor.com/', {
+        mode: 'cors',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'x-textrazor-key': '58ac6a6d3c599102da02a774d80ebd58de757aac78a10f99071178c0',
+        },
+        body: formData,
+      })
+      .then((response) => response.json())
+      .then(function(data) {
+        console.log('data: ', data);
+      })
+      .catch(err => console.log(err));
     },
     saveForEmail(email, value) {
       this.log.push({ email, value, time: Date.now() });
