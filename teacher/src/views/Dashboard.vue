@@ -2,7 +2,7 @@
   <v-content>
     <v-container>
       <div style="height: 10px;"></div>
-      <span class="display-1 font-weight-bold">Hi David</span>
+      <span class="display-1">Hi {{ $route.query.username }},</span>
       
       <div style="height: 60px;"></div>
 
@@ -91,7 +91,7 @@
         <v-data-table
           :headers="bestStudents.headers"
           :items="bestStudents.items"
-          :items-per-page="4"
+          :items-per-page="5"
           class="elevation-1"
         ></v-data-table>
       </v-layout>
@@ -148,6 +148,14 @@ export default {
           { text: 'Updated Ticker', value: 'ut' }
         ],
         items: [
+          { n: 'Dante Olivar', au: '9.3 (Complete Understand)', acg: '3 min', tp: 'A', la: 0, ut: 42 },
+          { n: 'Nazia Riley', au: '6.3 (Somewhat Understand)', acg: '8 min', tp: 'B', la: 2, ut: 14 },
+          { n: 'Peggy Freeman', au: '4.3 (Confused)', acg: '12 min', tp: 'C', la: 19, ut: 4 },
+          { n: 'Ari Alfaro', au: '3.3 (Confused)', acg: '5 min', tp: 'B', la: 2, ut: 49 },
+          { n: 'Arjun Patrawala', au: '1.3 (Lost)', acg: '17 min', tp: 'C', la: 902, ut: 48 },
+          { n: 'Nazia Riley', au: '6.3 (Somewhat Understand)', acg: '8 min', tp: 'B', la: 2, ut: 14 },
+          { n: 'Peggy Freeman', au: '4.3 (Confused)', acg: '12 min', tp: 'C', la: 19, ut: 4 },
+          { n: 'Ari Alfaro', au: '1.3 (Lost)', acg: '5 min', tp: 'B', la: 2, ut: 49 },
           { n: 'Dante Olivar', au: '9.3 (Complete Understand)', acg: '3 min', tp: 'A', la: 0, ut: 42 },
           { n: 'Nazia Riley', au: '6.3 (Somewhat Understand)', acg: '8 min', tp: 'B', la: 2, ut: 14 },
           { n: 'Peggy Freeman', au: '4.3 (Confused)', acg: '12 min', tp: 'C', la: 19, ut: 4 },

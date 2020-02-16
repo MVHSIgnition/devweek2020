@@ -3,13 +3,14 @@ import VueRouter from 'vue-router'
 import Dashboard from '@/views/Dashboard.vue'
 import New from '@/views/New.vue'
 import LiveLecture from '@/views/LiveLecture.vue'
+import Login from '@/views/Login.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    redirect: '/dashboard'
+    redirect: '/login'
   },
   {
     path: '/dashboard',
@@ -23,6 +24,10 @@ const routes = [
     path: '/live-lecture',
     component: LiveLecture
   },
+  {
+    path: '/login',
+    component: Login
+  }
 ]
 
 const router = new VueRouter({

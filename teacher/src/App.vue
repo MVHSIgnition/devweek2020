@@ -13,13 +13,14 @@
       <v-toolbar-title><span id="main-logo">INTELLECTURE</span> Teacher</v-toolbar-title>
 
       <v-spacer></v-spacer>
-      <v-btn @click="$router.push({ path: '/new' })">Start Lecture</v-btn>
+      <v-btn v-if="!started" @click="$router.push({ path: '/new' })">Start Lecture</v-btn>
+      <v-btn class="red" v-if="started" @click="$router.push({ path: '/dashboard' }); started = false;">End Lecture</v-btn>
     </v-app-bar>
 
     <div style="height: 64px;"></div>
 
     <v-content>
-      <router-view />
+      <router-view v-on:startlecture="started = true" />
     </v-content>
   </v-app>
 </template>
@@ -28,6 +29,11 @@
 
 export default {
   name: 'App',
+  data: function() {
+    return {
+      started: false
+    }
+  }
 };
 </script>
 
