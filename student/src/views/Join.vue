@@ -51,8 +51,8 @@
 </template>
 
 <script>
-
 export default {
+	name: "Join",
 	data() {
 		return {
 			code: ''
