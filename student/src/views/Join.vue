@@ -72,6 +72,9 @@ export default {
 		join() {
 			this.$router.push({ path: '/lecture?code=' + this.code });
 		}
+	},
+	created() {
+		this.$emit('code', this.code);
 	}
 }
 </script>
