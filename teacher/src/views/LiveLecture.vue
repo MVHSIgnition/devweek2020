@@ -38,7 +38,7 @@
 
       </div>
 
-      
+
       <v-row align="center" justify="center">
         <v-col align="center" class="pt-9">
           <a href="#questions"><i id="arrow-btn" class="fas fa-chevron-down" style="font-size:8vmin;color:gray;transform:translate(0,0);"></i></a>
@@ -119,7 +119,13 @@ export default {
       log: [],
       averageLog: [],
       start: Date.now(),
-      questions: [],
+      questions: [{text: "What is a Gaussian surface?", id: 0},
+      {text: "How do you calculate voltage?", id: 1},
+      {text: "How do you make a Gaussian surface??", id: 2},
+      {text: "Is a Gaussian surface a real physical object?", id: 3},
+      {text: "What's the formula for flux?", id: 4},
+      {text: "How do you used a closed surface integral to calculate flux?", id: 5},
+      {text: "What is the relationship between voltage and a Gaussian surface?", id: 6}],
       keywords: /* hardcoded data */ [{word: 'gaussian surface', count: 6}, {word: 'electric flux', count: 4}, {word: 'voltage', count: 3}],
     }
   },
