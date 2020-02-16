@@ -9,7 +9,7 @@
     >
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
-      <v-toolbar-title>Intellecture</v-toolbar-title>
+      <v-toolbar-title>Intellecture Student</v-toolbar-title>
 
       <v-spacer></v-spacer>
 
