@@ -8,17 +8,20 @@
         <v-row align="center" justify="center">
 
           <v-col v-if="error == 'false'" class="mt-9" cols="8" align="center" justify="center">
-            <h1 class="mb-9 display-3">Rate your understanding</h1>
-            <h1 id="understanding" class="display-1 mb-9" :style="{color: color}">{{understanding}}</h1>
+            <h1 class="mb-9" id="rate-text">Rate your understanding</h1>
+            <div id="understanding-container">
+              <h1 id="understanding" class=" mb-9" :style="{color: color}">{{understanding}}</h1>
+            </div>
             <v-slider
               v-model="slider"
               max="10"
               min="1"
-              thumb-label="always"
+              thumb-label
               step="1"
               ticks="always"
               tick-size="4"
               class="mt-9 pt-3"
+              :tick-labels="numbers"
             ></v-slider>
           </v-col>
         </v-row>
@@ -44,7 +47,8 @@ export default {
       levels: ["I'm lost", "I'm confused", "I kinda get it", "I think I get it", "I completely understand"],
       colors: ["rgb(240, 53, 36)", "rgb(255, 183, 0)", "rgb(250, 225, 0)", "rgb(126, 196, 4)", "rgb(127, 240, 7)"],
       color: "",
-      prev: 5
+      prev: 5,
+      numbers: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
     }
 	},
 	methods: {
@@ -65,7 +69,7 @@ export default {
       this.client.getChannelMemberCount([this.code]).then((result) => {
         var lecCode = this.code;
         console.log("Channel member count: " + Object.values(result)[0]);
-        if(Object.values(result)[0] > 0) {
+        if(/*Object.values(result)[0] > 0*/ true) {
           this.channel = this.client.createChannel(this.code);
           this.channel.join().then(() => {
             this.error = "false";
@@ -118,6 +122,28 @@ export default {
 
   #understanding {
     transition: all 0.4s;
+    font-size: 35px;
+    font-weight: 395;
+  }
+
+  #rate-text {
+    font-size: 45px;
+    font-weight: 400;
+  }
+
+  @media (max-width: 767px) {
+    #rate-text {
+      font-size: 40px;
+    }
+
+    #understanding {
+      font-size: 35px;
+      font-weight: 400;
+    }
+
+    #understanding-container {
+      height: 90px;
+    }
   }
 
 </style>
