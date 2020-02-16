@@ -1,30 +1,21 @@
 <template>
-    <v-content>
-        <v-row
-            align="center"
-            justify="center"
-        >
-            <v-col
-                cols="6"
-                sm="8"
-                md="8"
-            >
+    <v-container>
+        <v-row>
+            <v-col>
                 <v-card>
-                    <v-toolbar
-                        color="primary"
-                        dark
-                        flat
-                    >
-                        <v-toolbar-title>Sign in</v-toolbar-title>
-                    </v-toolbar>
+                    <v-card-title>
+                        <span class="title font-weight-light">Sign in</span>
+                    </v-card-title>
 
                     <v-card-text>
-                        <GoogleLogin :params="params" :renderParams="renderParams" :onSuccess="onSuccess" :onFailure="onFailure">wat</GoogleLogin>
+                        <v-row justify="center">
+                            <GoogleLogin :params="params" :renderParams="renderParams" :onSuccess="onSuccess" :onFailure="onFailure">wat</GoogleLogin>
+                        </v-row>
                     </v-card-text>
                 </v-card>
             </v-col>
         </v-row>
-    </v-content>
+    </v-container>
 </template>
 
 <script>
@@ -42,6 +33,7 @@ export default {
                 width: 250,
                 height: 50, 
                 longtitle: true,
+                theme: 'dark',
             },
             onSuccess: (googleUser) => {
                 console.log(googleUser);
