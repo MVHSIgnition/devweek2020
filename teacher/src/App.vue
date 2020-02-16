@@ -6,10 +6,11 @@
       absolute
       color="green lighten-1"
       dark
+      style="position: fixed; left: 0px; top: 0px;"
     >
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+      <img src="../public/logo.png" width="35px" class="">
 
-      <v-toolbar-title>Intellecture Teacher Portal</v-toolbar-title>
+      <v-toolbar-title><span id="main-logo">INTELLECTURE</span> Teacher</v-toolbar-title>
 
       <v-spacer></v-spacer>
       <v-btn @click="$router.push({ path: '/new' })">Start Lecture</v-btn>
@@ -29,3 +30,15 @@ export default {
   name: 'App',
 };
 </script>
+
+<style scoped>
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
+
+#main-logo {
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+</style>

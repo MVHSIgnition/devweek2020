@@ -1,7 +1,6 @@
 <template>
   <v-content>
     <v-container
-      class="fill-height"
       fluid
     >
       <h1>Lecture: {{ lectureName }}</h1>
@@ -21,7 +20,25 @@
             <br>
           </v-card-text>
         </v-card>
-        <div id="chart-container" style="height: 300px; width: 700px"></div>
+        <div id="chart-container" class="ml-3" style="height: 300px; width: 700px"></div>
+      </v-row>
+      <v-row align="center" justify="center">
+        <v-col align="center" justify="center" cols="10">
+        <a href="#questions"><i id="arrow-btn" class="fas fa-chevron-down" style="font-size:8vmin;color:gray;transform:translate(0,0);"></i></a>
+
+        <h1 id="questions" class="display-2 mt-9 mb-4 pt-9">Questions</h1>
+        <ul style="list-style-type: none">
+        <li v-for="question in questions" v-bind:key="question.id">
+          <v-banner>
+        {{question.text}}
+        <template v-slot:actions>
+          <v-btn text color="primary">Dismiss</v-btn>
+        </template>
+      </v-banner>
+        </li>
+      </ul>
+      <div style="height: 400px;"></div>
+      </v-col>
       </v-row>
     </v-container>
 
@@ -58,7 +75,12 @@ export default {
       understandingByPerson: {},
       log: [],
       averageLog: [],
-      start: Date.now()
+      start: Date.now(),
+      questions: [/*
+        {text: "waht is this", id: 0},
+        {text: "waht is this", id: 1},
+        {text: "waht is this", id: 2}*/
+      ]
     }
   },
   methods: {
@@ -75,6 +97,7 @@ export default {
           this.saveForEmail(email, obj.value);
         } else if (obj.type === 'question') {
           console.log('Question: ' + obj.question)
+          this.questions.unshift({text: obj.question, id: this.questions.length});
           return;
         }
 
@@ -180,4 +203,8 @@ export default {
 .blink {
   animation: blink 3s linear infinite;
 } */
+
+html {
+  scroll-behavior: smooth;
+}
 </style>
