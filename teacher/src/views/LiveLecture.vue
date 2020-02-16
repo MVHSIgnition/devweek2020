@@ -25,10 +25,11 @@
         </v-card>
       </v-row>
       <v-row align="center" justify="center">
-        <v-col align="center">
+        <v-col align="center" class="pt-9">
           <a href="#questions"><i id="arrow-btn" class="fas fa-chevron-down" style="font-size:8vmin;color:gray;transform:translate(0,0);"></i></a>
 
-          <h1 id="questions" class="display-2 mt-9 mb-4 pt-9">Questions</h1>
+          <span id="questions"></span>
+          <h1 class="display-2 mt-9 mb-4 pt-9">Questions</h1>
           <ul style="list-style-type: none">
             <li v-for="question in questions" v-bind:key="question.id">
               <v-banner>
@@ -248,7 +249,7 @@ export default {
     this.client.on('ConnectionStateChange', (newState, reason) => {
       console.log('on connection state changed to ' + newState + ' reason: ' + reason);
     });
-    this.client.login({ token: null, uid: 'teacher' }).then(() => {
+    this.client.login({ token: null, uid: 'teacher' + Math.floor(Math.random()*200) }).then(() => {
       this.setup();
       console.log('AgoraRTM client login success');
     }).catch(err => {
