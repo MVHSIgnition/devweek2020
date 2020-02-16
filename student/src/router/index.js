@@ -2,13 +2,18 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Join from '@/views/Join.vue'
 import Lecture from '@/views/Lecture.vue'
+import SignIn from '@/views/SignIn.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    redirect: '/join'
+    redirect: '/sign_in'
+  },
+  {
+    path: '/sign_in',
+    component: SignIn
   },
   {
     path: '/join',
