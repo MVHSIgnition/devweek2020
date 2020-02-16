@@ -5,7 +5,6 @@ export const setUserData = (user) => {
     const lastName = user.Qt.wU;
     const profilePic = user.Qt.UK;
     const email = user.Qt.zu;
-    console.log('SET USER DATA');
     store.commit('setEmail', email);
     store.commit('setFirstName', firstName);
     store.commit('setLastName', lastName);
