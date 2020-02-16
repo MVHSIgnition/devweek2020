@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Dashboard from '@/views/Dashboard.vue'
 import New from '@/views/New.vue'
 import LiveLecture from '@/views/LiveLecture.vue'
+import Login from '@/views/Login.vue'
 
 Vue.use(VueRouter)
 
