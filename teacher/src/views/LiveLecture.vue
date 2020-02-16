@@ -5,8 +5,10 @@
     >
       <h1 class="display-1">Lecture: <strong>{{ lectureName }}</strong></h1>
       <br><br>
+
+      <div style="height: 55vh;">
       <v-row align="center" justify="center">
-        <v-card width="400" height="400">
+        <v-card width="450" height="400">
           <v-card-text>
             <span class="text--primary title"><span style="background: red; padding: 2px 5px; color: white; border-radius: 3px;animation: animation: blink 1s step-start 0s infinite;" class="blink">LIVE</span> Understanding Score</span>
             <br><br><br><br><br><br>
@@ -34,56 +36,52 @@
         </v-col>
       </v-row> -->
 
+      </div>
+
+      
       <v-row align="center" justify="center">
-        <v-col align="center">
+        <v-col align="center" class="pt-9">
           <a href="#questions"><i id="arrow-btn" class="fas fa-chevron-down" style="font-size:8vmin;color:gray;transform:translate(0,0);"></i></a>
 
           <h1 id="questions" class="display-2 mt-9 mb-4 pt-9">Questions</h1>
-          <ul style="list-style-type: none">
-            <li v-for="question in questions" v-bind:key="question.id">
-              <v-banner>
-                {{question.text}}
-                <template v-slot:actions>
-                  <v-btn text color="primary">Dismiss</v-btn>
-                </template>
-              </v-banner>
-            </li>
-          </ul>
-
-          <div style="min-height: 80vh;"></div>
+          
+          <v-row>
+            <v-col align="left">
+              <v-card
+                class="mx-auto"
+                max-width="400"
+                tile
+              >
+                <v-card-title>Keywords</v-card-title>
+                <v-card-text>
+                  <v-list-item 
+                    v-for="n in 3"
+                    v-bind:key="n"
+                  >
+                    <v-list-item-content>
+                      <v-list-item-title>{{ (n) + ': ' + keywords[n-1].word }}</v-list-item-title>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-card-text>
+              </v-card>
+            </v-col>
+            
+            <v-col cols="8">
+              <ul style="list-style-type: none">
+                <li v-for="question in questions" v-bind:key="question.id">
+                  <v-banner>
+                    {{question.text}}
+                    <template v-slot:actions>
+                      <v-btn text color="primary">Dismiss</v-btn>
+                    </template>
+                  </v-banner>
+                </li>
+              </ul>
+              <div style="height: 80vh;"></div>
+            </v-col>
+          </v-row>
         </v-col>
       </v-row>
-
-      <v-col>
-        <v-card
-          class="mx-auto"
-          max-width="400"
-          tile
-        >
-          <v-list-item 
-            v-for="n in 3"
-            v-bind:key="n"
-          >
-            <v-list-item-content>
-              <v-list-item-title>{{ (n) + ': ' + keywords[n-1].word }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-card>
-      </v-col>
-      
-      <v-col>
-        <ul style="list-style-type: none">
-          <li v-for="question in questions" v-bind:key="question.id">
-            <v-banner>
-              {{question.text}}
-              <template v-slot:actions>
-                <v-btn text color="primary">Dismiss</v-btn>
-              </template>
-            </v-banner>
-          </li>
-        </ul>
-        <div style="height: 400px;"></div>
-      </v-col>
     </v-container>
 
 
@@ -121,11 +119,7 @@ export default {
       log: [],
       averageLog: [],
       start: Date.now(),
-      questions: [
-        {text: "waht is this", id: 0},
-        {text: "waht is this", id: 1},
-        {text: "waht is this", id: 2}
-      ],
+      questions: [],
       keywords: /* hardcoded data */ [{word: 'gaussian surface', count: 6}, {word: 'electric flux', count: 4}, {word: 'voltage', count: 3}],
     }
   },
@@ -257,7 +251,7 @@ export default {
     this.client.on('ConnectionStateChange', (newState, reason) => {
       console.log('on connection state changed to ' + newState + ' reason: ' + reason);
     });
-    this.client.login({ token: null, uid: 'teacher' }).then(() => {
+    this.client.login({ token: null, uid: 'teacher' + Math.floor(Math.random()*200) }).then(() => {
       this.setup();
       console.log('AgoraRTM client login success');
     }).catch(err => {
