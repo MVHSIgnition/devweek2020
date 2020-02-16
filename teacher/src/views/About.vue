@@ -24,7 +24,6 @@ export default {
     }
   },
   methods: {
-
     login: function() {
       this.client.login({ token: null, uid: this.uid }).then(() => {
         console.log('AgoraRTM client login success');
@@ -54,7 +53,7 @@ export default {
     }
   },
   created() {
-    this.client = this.$client.createInstance('4b7e608f84004ea2acd537eda95f6bf8'); 
+    this.client = this.$client.createInstance('4b7e608f84004ea2acd537eda95f6bf8');
     console.log("hi");
 
     this.client.on('ConnectionStateChange', (newState, reason) => {
