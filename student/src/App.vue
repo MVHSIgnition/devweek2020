@@ -7,13 +7,18 @@
       color="green lighten-1"
       dark
     >
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
-      <v-toolbar-title>Intellecture Student</v-toolbar-title>
+      <v-toolbar-title v-if="code == ''">Intellecture Student</v-toolbar-title>
+      <div v-if="code != ''" style="border-radius: 5px; background-color: #ddd; padding: 0px 10px; color: black; height: 40px; font-size: 15px;">
+        <h1>{{code}}</h1>
+      </div>
+      <div v-if="logged" class="my-2 ml-3">
+        <v-btn v-on:click="exit" depressed color="error">Exit</v-btn>
+      </div>
 
       <v-spacer></v-spacer>
 
-      <div v-if="profilePic != undefined && profilePic != ''" class="mr-3" >
+      <div v-if="profilePic != undefined && profilePic != ''" >
         <v-menu
           v-model="signOutValue"
         >
@@ -30,14 +35,6 @@
             </v-list-item>
           </v-list>
         </v-menu>
-      </div>
-
-      <div v-if="code != ''" style="border-radius: 5px; background-color: #ddd; padding: 0px 10px; color: black; height: 40px; font-size: 15px;">
-        <h1>{{code}}</h1>
-      </div>
-
-      <div v-if="logged" class="my-2 ml-3">
-        <v-btn v-on:click="exit" depressed color="error">Exit</v-btn>
       </div>
     </v-app-bar>
 
