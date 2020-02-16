@@ -49,9 +49,9 @@ export default {
     return {
       id: this.$route.query.id,
       lectureName: this.$route.query.name,
-      understandingScore: 5,
-      averageUnderstanding: 5,
-      range: 0,
+      understandingScore: '--',
+      averageUnderstanding: '--',
+      range: '--',
       client: null,
       channel: null,
       people: {},
@@ -65,22 +65,27 @@ export default {
     setup() {
       this.channel = this.client.createChannel(this.id);
       this.channel.on('ChannelMessage', ({ text }, email) => {
-        let val = parseInt(text);
+        let obj = JSON.parse(text);
+        console.log(text);
 
-        if (isNaN(val)) {
+        if (obj.type === 'login') {
           this.people[email] = text;
           this.saveForEmail(email, 5);
-        } else {
-          this.saveForEmail(email, val);
+        } else if (obj.type === 'update') {
+          this.saveForEmail(email, obj.value);
+        } else if (obj.type === 'question') {
+          console.log('Question: ' + obj.question)
+          return;
         }
 
         this.averageUnderstanding = this.computeAverage();
-        this.range = this.calculateStandardDeviation(this.averageUnderstanding) + '';
+        this.range = this.calculateStandardDeviation(this.averageUnderstanding);
         this.understandingScore = this.compositeScore(this.averageUnderstanding, this.range);
         this.averageLog.push({
-          x: (Date.now() - this.start)/1000,
+          x: (Date.now() - this.start) / 1000,
           y: this.understandingScore
         });
+
         this.chart.render();
         while (this.averageLog[this.averageLog.length - 1].x - this.averageLog[0].x > 30) {
           this.averageLog.shift();
@@ -123,7 +128,7 @@ export default {
           max = each;
         }
       }
-      console.log(max-min);
+      console.log(max - min);
       return max - min;
     },
     compositeScore(avg, std) {
