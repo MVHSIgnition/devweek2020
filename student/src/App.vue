@@ -7,8 +7,8 @@
       color="green lighten-1"
       dark
     >
-
-      <v-toolbar-title v-if="code == ''">Intellecture Student</v-toolbar-title>
+      <img src="../public/logo.png" width="35px" class="">
+      <v-toolbar-title v-if="code == ''"><span id="main-logo">INTELLECTURE</span> Student</v-toolbar-title>
       <div v-if="code != ''" style="border-radius: 5px; background-color: #ddd; padding: 0px 10px; color: black; height: 40px; font-size: 15px;">
         <h1>{{code}}</h1>
       </div>
@@ -84,5 +84,13 @@ export default {
 </script>
 
 <style scoped>
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
+
+#main-logo {
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 25px;
+  font-weight: 600;
+}
 
 </style>
