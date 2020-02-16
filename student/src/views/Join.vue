@@ -31,16 +31,6 @@
 									</v-col>
 								</v-row>
 							</v-form>
-
-							<v-list-item class="grow">
-								<v-list-item-avatar>
-									<v-img v-bind:src="profilePic"></v-img>
-								</v-list-item-avatar>
-
-								<v-list-item-content>
-									<v-list-item-title>{{ firstName + " " + lastName }}</v-list-item-title>
-								</v-list-item-content>
-							</v-list-item>
 						</v-card-text>
 
 					</v-card>

@@ -9,6 +9,7 @@ export default new Vuex.Store({
         firstName: '',
         lastName: '',
         profilePic: '',
+        auth2: null,
     },
     mutations: {
         setEmail(state, payload) {
@@ -18,10 +19,13 @@ export default new Vuex.Store({
             state.firstName = payload;
         },
         setLastName(state, payload) {
-            state.lastName = payload
+            state.lastName = payload;
         },
         setProfilePic(state, payload) {
-            state.profilePic = payload
+            state.profilePic = payload;
+        },
+        setAuth2(state, payload) {
+            state.auth2 = payload;
         }
     },
     getters: {
@@ -37,5 +41,8 @@ export default new Vuex.Store({
         profilePic(state) {
             return state.profilePic;
         },
+        auth2(state) {
+            return state.auth2;
+        }
     }
 });
