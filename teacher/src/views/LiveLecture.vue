@@ -5,6 +5,8 @@
     >
       <h1 class="display-1">Lecture: <strong>{{ lectureName }}</strong></h1>
       <br><br>
+
+      <div style="height: 55vh;">
       <v-row align="center" justify="center">
         <v-card width="400" height="400">
           <v-card-text>
@@ -24,6 +26,7 @@
           <div id="chart-container" class="ml-3" style="height: 300px; width: 700px"></div>
         </v-card>
       </v-row>
+      </div>
       <v-row align="center" justify="center">
         <v-col align="center" class="pt-9">
           <a href="#questions"><i id="arrow-btn" class="fas fa-chevron-down" style="font-size:8vmin;color:gray;transform:translate(0,0);"></i></a>
