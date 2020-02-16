@@ -39,22 +39,43 @@ export default {
   data() {
     return {
       id: this.$route.query.id,
-      averageUnderstanding: 5.14,
+      averageUnderstanding: 5,
+      range: 0,
       client: null,
-      channel: null
+      channel: null,
+      people: {},
+      understandingByPerson: {},
+      log: []
     }
   },
   methods: {
     setup() {
       this.channel = this.client.createChannel(this.id);
       this.channel.on('ChannelMessage', ({ text }, email) => {
-        console.log(email, text);
+        let val = 5;
+        try {
+          val = parseInt(text);
+        } catch (e) {
+          this.people[email] = text;
+        }
+        this.saveForEmail(email, val);
+        this.averageUnderstanding = this.computeAverage();
       });
       this.channel.join().then(() => {
         console.log("You joined channel successfully");
       }).catch(error => {
         console.log("Failure to join channel");
       });
+    },
+    saveForEmail(email, value) {
+      this.log.push({ email, value });
+      this.understandingByPerson[email] = value;
+    },
+    computeAverage() {
+      let arr = Object.values(this.understandingByPerson);
+      let total = 0;
+      for (let each of arr) total += each;
+      return total / arr.length;
     }
   },
   mounted() {
