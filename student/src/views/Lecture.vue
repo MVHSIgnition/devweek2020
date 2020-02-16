@@ -2,7 +2,7 @@
   <div>
     <v-content>
       <div v-if="error == 'true'">
-          <p class="red--text font-weight-bold	display-3 text-center mt-5">Invalid code</p>
+          <p class="red--text font-weight-bold	display-4 text-center mt-9 pt-9">Invalid code</p>
       </div>
       <v-container class="fill-height" fluid>
         <v-row align="center" justify="center">

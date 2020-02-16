@@ -13,7 +13,9 @@
 
       <v-spacer></v-spacer>
 
-      <h1>{{code}}</h1>
+      <div v-if="code != ''" style="border-radius: 5px; background-color: #ddd; padding: 0px 10px; color: black; height: 40px; font-size: 15px;">
+        <h1>{{code}}</h1>
+      </div>
 
       <div v-if="logged" class="my-2 ml-3">
         <v-btn v-on:click="exit" depressed color="error">Exit</v-btn>
@@ -55,3 +57,7 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+
+</style>
