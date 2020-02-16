@@ -8,7 +8,7 @@
 
       <div style="height: 55vh;">
       <v-row align="center" justify="center">
-        <v-card width="400" height="400">
+        <v-card width="450" height="400">
           <v-card-text>
             <span class="text--primary title"><span style="background: red; padding: 2px 5px; color: white; border-radius: 3px;animation: animation: blink 1s step-start 0s infinite;" class="blink">LIVE</span> Understanding Score</span>
             <br><br><br><br><br><br>
@@ -65,7 +65,7 @@
                   </v-banner>
                 </li>
               </ul>
-              <div style="height: 400px;"></div>
+              <div style="height: 80vh;"></div>
             </v-col>
           </v-row>
         </v-col>
@@ -107,11 +107,7 @@ export default {
       log: [],
       averageLog: [],
       start: Date.now(),
-      questions: [
-        {text: "waht is this", id: 0},
-        {text: "waht is this", id: 1},
-        {text: "waht is this", id: 2}
-      ],
+      questions: [],
       keywords: /* hardcoded data */ [{word: 'gaussian surface', count: 6}, {word: 'electric flux', count: 4}, {word: 'voltage', count: 3}],
     }
   },
