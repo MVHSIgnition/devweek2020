@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: "Lecture",
   props: {
@@ -58,16 +60,16 @@ export default {
       console.log('on connection state changed to ' + newState + ' reason: ' + reason);
     });
 
-    this.client.login({ token: null, uid: "yytonyxin@gmail.com"/*window.email*/ }).then(() => {
+    this.client.login({ token: null, uid: this.email}).then(() => {
       console.log("Login successful");
       this.client.getChannelMemberCount([this.code]).then((result) => {
         var lecCode = this.code;
         console.log("Channel member count: " + Object.values(result)[0]);
-        if(/*Object.values(result)[0] > 0*/ true) {
+        if(Object.values(result)[0] > 0) {
           this.channel = this.client.createChannel(this.code);
           this.channel.join().then(() => {
             this.error = "false";
-            var message = "Tony Xin";
+            var message = this.firstName + " " + this.lastName;
             //var message = window.name;
             this.channel.sendMessage({ text: message}).then(() => {}).catch(error => { console.log(error);});
             this.channel.on('ChannelMessage', ({ text }, senderId) => { 
@@ -94,7 +96,8 @@ export default {
         }
       }
       return this.levels[Math.floor((this.slider-1)/2)]
-    }
+    },
+    ...mapState(['firstName', 'lastName', 'profilePic', 'email'])
   },
   watch: {
     'exit': function() {
