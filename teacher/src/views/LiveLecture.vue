@@ -24,6 +24,16 @@
           <div id="chart-container" class="ml-3" style="height: 300px; width: 700px"></div>
         </v-card>
       </v-row>
+
+      <!-- <v-row align="center" justify="center">
+        <v-col cols="12" sm="6" align="center">
+          <v-card>
+            <span>People in Lecture</span><br>
+            <span v-for="person in peopleList" v-bind:key="person" style="display: block;">{{ person }}</span>
+          </v-card>
+        </v-col>
+      </v-row> -->
+
       <v-row align="center" justify="center">
         <v-col align="center">
           <a href="#questions"><i id="arrow-btn" class="fas fa-chevron-down" style="font-size:8vmin;color:gray;transform:translate(0,0);"></i></a>
@@ -44,38 +54,36 @@
         </v-col>
       </v-row>
 
-          <v-col>
-            <v-card
-              class="mx-auto"
-              max-width="400"
-              tile
-            >
-              <v-list-item 
-                v-for="n in 3"
-                v-bind:key="n"
-              >
-                <v-list-item-content>
-                  <v-list-item-title>{{ (n) + ': ' + keywords[n-1].word }}</v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-            </v-card>
-          </v-col>
-          
-          <v-col>
-            <ul style="list-style-type: none">
-              <li v-for="question in questions" v-bind:key="question.id">
-                <v-banner>
-                  {{question.text}}
-                  <template v-slot:actions>
-                    <v-btn text color="primary">Dismiss</v-btn>
-                  </template>
-                </v-banner>
-              </li>
-            </ul>
-            <div style="height: 400px;"></div>
-          </v-col>
-        </v-col>
-      </v-row>
+      <v-col>
+        <v-card
+          class="mx-auto"
+          max-width="400"
+          tile
+        >
+          <v-list-item 
+            v-for="n in 3"
+            v-bind:key="n"
+          >
+            <v-list-item-content>
+              <v-list-item-title>{{ (n) + ': ' + keywords[n-1].word }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-card>
+      </v-col>
+      
+      <v-col>
+        <ul style="list-style-type: none">
+          <li v-for="question in questions" v-bind:key="question.id">
+            <v-banner>
+              {{question.text}}
+              <template v-slot:actions>
+                <v-btn text color="primary">Dismiss</v-btn>
+              </template>
+            </v-banner>
+          </li>
+        </ul>
+        <div style="height: 400px;"></div>
+      </v-col>
     </v-container>
 
 
@@ -257,6 +265,11 @@ export default {
     });
     this.initChart();
     this.$emit("startlecture");
+  },
+  computed: {
+    peopleList() {
+      return Object.values(this.people);
+    }
   }
 }
 </script>
@@ -282,5 +295,4 @@ html {
 #arrow-btn:hover {
   font-size: 20px;
 }
-
 </style>
