@@ -7,10 +7,14 @@ export const setUserData = (user) => {
         store.commit('setLastName', '');
         store.commit('setProfilePic', '');
     } else {
-        const firstName = user.Qt.vW;
-        const lastName = user.Qt.wU;
-        const profilePic = user.Qt.UK;
-        const email = user.Qt.zu;
+        const profile = user.getBasicProfile();
+        console.log('USER: ', profile);
+        const name = profile.getName().split(' ');
+        const firstName = name[0];
+        const lastName = name[1];
+        const profilePic = profile.getImageUrl();
+        const email = profile.getEmail();
+
         store.commit('setEmail', email);
         store.commit('setFirstName', firstName);
         store.commit('setLastName', lastName);
