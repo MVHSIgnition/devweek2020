@@ -7,7 +7,7 @@
       color="green lighten-1"
       dark
     >
-      <img src="../public/logo.png" width="35px" class="">
+      <img v-if="!logged" src="../public/logo.png" width="35px" class="">
       <v-toolbar-title v-if="code == ''"><span id="main-logo">INTELLECTURE</span> Student</v-toolbar-title>
       <div v-if="code != ''" style="border-radius: 5px; background-color: #ddd; padding: 0px 10px; color: black; height: 40px; font-size: 15px;">
         <h1>{{code}}</h1>
