@@ -10,7 +10,7 @@
     "agora-rtm-sdk": "^1.2.1",
     "vue": "^2.6.11",
     "vue-router": "^3.1.5",
-    "vuetify": "^2.2.11"
+    "vuetify": "^2.6.10"
   },
   "devDependencies": {
     "@vue/cli-plugin-router": "~4.2.0",
